@@ -10,8 +10,7 @@ import re
 KEYWORD_PLAYWRIGHT = "脚本"           #Excelファイルで、脚本家の名前が記載されたカラム名
 PATTERN_VALID = "^\d+"                #Excelファイルの、有効な行のパターン
 TARGET_COLUMN_DEFAULT_VALUE = -1      #Excelファイルで、取得対象とするカラムのデフォルト値
-COLUMN_SEQ = 0                        #整形後の連番カラム
-COLUMN_PLAYWRIGHT = 1                 #整形後の脚本家カラム
+COLUMN_SEQ = 0                        #Excelファイルの、連番カラム
 
 def loading_excel(path):
     """
@@ -40,7 +39,7 @@ def formatting_excel(load):
     Args:
         load (object): 整形対象のExcelファイル
     Returns:
-        list: 整形したExcelデータ
+        list: 整形したExcelデータ(一次元)
     Raises:
         Exception: Excelファイルのフォーマットに誤りがある場合に発生
     """
@@ -64,10 +63,10 @@ def formatting_excel(load):
                 # セル結合の影響でnanとなっているデータを変換する
                 if pandas.isna(row[target_column]):
                     # nanの場合は、前回値を取得する
-                    parameter = [int(row[COLUMN_SEQ]), list[-1][COLUMN_PLAYWRIGHT]]
+                    parameter = list[-1]
                 else:
                     # nanではない場合は、読み取ったデータを取得する
-                    parameter = [int(row[COLUMN_SEQ]), row[target_column]]
+                    parameter = row[target_column]
                 # リストにデータを格納
                 list.append(parameter)
 
