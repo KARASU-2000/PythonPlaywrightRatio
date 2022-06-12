@@ -7,8 +7,8 @@ import collections
 from decimal import Decimal, ROUND_HALF_UP
 
 # 定数を定義
-COLUMN_PLAYWRIGHT = 0
-COLUMN_STORY_NUMBER = 1
+COLUMN_PLAYWRIGHT = 0       # 整形したlistのカラム番号(脚本家)
+COLUMN_STORY_NUMBER = 1     # 整形したlistのカラム番号(担当話数)
 
 def counting_playwright(list_playwright):
     """

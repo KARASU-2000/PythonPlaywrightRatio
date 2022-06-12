@@ -7,10 +7,10 @@ import pandas
 import re
 
 # 定数を定義
-KEYWORD_PLAYWRIGHT = "脚本"           #Excelファイルで、脚本家の名前が記載されたカラム名
-PATTERN_VALID = "^\d+"                #Excelファイルの、有効な行のパターン
-TARGET_COLUMN_DEFAULT_VALUE = -1      #Excelファイルで、取得対象とするカラムのデフォルト値
-COLUMN_SEQ = 0                        #Excelファイルの、連番カラム
+KEYWORD_PLAYWRIGHT = "脚本"           # Excelファイルで、脚本家の名前が記載されたカラム名
+PATTERN_VALID = "^\d+"                # Excelファイルの、有効な行のパターン
+TARGET_COLUMN_DEFAULT_VALUE = -1      # Excelファイルで、取得対象とするカラムのデフォルト値
+COLUMN_SEQ = 0                        # Excelファイルの、連番カラム
 
 def loading_excel(path):
     """
