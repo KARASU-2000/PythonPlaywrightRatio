@@ -7,6 +7,7 @@ import pandas
 import re
 
 # 定数を定義
+READ_SHEET_INDEX = 0                  # Excelファイルの、読み込むシート番号
 KEYWORD_PLAYWRIGHT = "脚本"           # Excelファイルで、脚本家の名前が記載されたカラム名
 PATTERN_VALID = "^\d+"                # Excelファイルの、有効な行のパターン
 TARGET_COLUMN_DEFAULT_VALUE = -1      # Excelファイルで、取得対象とするカラムのデフォルト値
@@ -20,13 +21,18 @@ def loading_excel(path):
         path (string): 読み込むExcelファイルのパス
     Returns:
         object: 読み込んだExcelファイルのデータ(二次元)
+        string: 読み込んだExcelファイルのシート名
     Raises:
         OSError: ファイル読み込み失敗時に発生
     """
     try:
         # Excelファイルを読み込み
-        load = pandas.read_excel(path)
-        return load
+        # シート名を取得する
+        input_file = pandas.ExcelFile(path)
+        # 定数で定義したシートを読み込む
+        read_sheet_name = input_file.sheet_names[READ_SHEET_INDEX]
+        load_data = pandas.read_excel(path, sheet_name=read_sheet_name)
+        return load_data, read_sheet_name
     except Exception as e:
         # 呼び出し元に例外をthrow
         raise OSError("ファイル読み込み失敗")
