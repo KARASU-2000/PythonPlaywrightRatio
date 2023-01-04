@@ -25,7 +25,7 @@ def drawing_pie_chart(pie_chart_element, title):
 
     try:
         # 日本語が文字化けしないように、フォントを指定する
-        plt.rcParams["font.family"] = "MS Gothic"
+        plt.rcParams["font.family"] = "IPAGothic"
 
         # 要素の割合を昇順でソートする
         pie_chart_element.sort(reverse=False, key=lambda list: list[COLUMN_ELEMENT_RATIO])
